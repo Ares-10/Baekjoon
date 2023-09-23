@@ -1,11 +1,18 @@
+import java.util.Arrays;
+
 class Solution {
     public String solution(String X, String Y) {
-        StringBuilder answer = new StringBuilder();
+        String answer = "";
         int[] num1 = new int[10];
         int[] num2 = new int[10];
+        Arrays.fill(num1, 0);
+        Arrays.fill(num2, 0);
         
-        for (char c : X.toCharArray()) num1[c - '0']++;
-        for (char c : Y.toCharArray()) num2[c - '0']++;
+        int n = X.length(), m = Y.length();
+        while (n-- > 0)
+            num1[X.charAt(n) - '0']++;
+        while (m-- > 0)
+            num2[Y.charAt(m) - '0']++;
         
         int k = 9;
         for (; k >= 0; k--)
@@ -17,12 +24,14 @@ class Solution {
             return "-1";
         
         for (int i = 9; i >= 0; i--) {
-            int minCount = Math.min(num1[i], num2[i]);
-            while(minCount-- > 0) {
-                answer.append(i);
+            for (;num1[i] > 0 && num2[i] > 0;)
+            {
+                answer += i;
+                num1[i]--;
+                num2[i]--;
             }
         }
         
-        return answer.toString();
+        return answer;
     }
 }
