@@ -7,7 +7,7 @@ bool solution(string s)
 {
     bool answer = true;
     
-    stack<int> st;
+    stack<char> st;
     
     for (int i = 0; i < s.size(); i++)
     {
