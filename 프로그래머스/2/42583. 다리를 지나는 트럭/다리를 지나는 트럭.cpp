@@ -23,13 +23,10 @@ bool push_truck(vector<pair<int, int>> &bridge, int bridge_length, int possible_
     return false;
 }
 
-#include<iostream>
 void time_passed(vector<pair<int, int>> &bridge)
 {
     for (pair<int, int> &truck : bridge)
-    {
         truck.second--;
-    }
 }
 
 int solution(int bridge_length, int weight, vector<int> truck_weights) {
@@ -44,9 +41,8 @@ int solution(int bridge_length, int weight, vector<int> truck_weights) {
             bridge.erase(bridge.begin());
         
         if (push_truck(bridge, bridge_length, weight, truck_weights[i]))
-        {
             i++;
-        }
+        
         if (i == truck_weights.size())
             return time + bridge_length;
     }
